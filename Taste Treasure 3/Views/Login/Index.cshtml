@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/login.css" rel="stylesheet" />
+    <!-- Include any other CSS files here -->
+    <style>
+        /* Add custom CSS here to center align login section */
+        #login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <section class="login" id="login">
+        <div class="content">
+            <img src="~/images/logo.webp" class="logo" alt="Logo" />
+            <h3 class="pt-3">Let's Get Started!</h3>
+            <p class="mb-2">Log in to your existing account</p>
+            <hr class="w-60" />
+            <form method="post" action="/Login/Index" class="formReg">
+                <!-- Ensure the action attribute points to the correct endpoint -->
+                <div class="form-group">
+                    <label for="email" class="mb-1">Email</label>
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Enter Your Email" required /> <!-- Add name attribute -->
+                </div>
+                <div class="form-group">
+                    <label for="pass" class="mb-1">Password</label>
+                    <input type="password" id="pass" name="password" class="form-control" placeholder="Enter Your Password" required /> <!-- Add name attribute -->
+                </div>
+                <button type="submit" class="button Login btn-warning btn-md w-100 custom-button">Login</button>
+            </form>
+            <h6 class="forgotPass mt-3 text-left">
+                Forgot your Password?
+                <span>
+                    <a asp-page="/Forgot" class="link">Click Here</a>
+                </span>
+            </h6>
+            <h6 class="account mt-5 text-center">
+                Don't have an account?
+                <span>
+                    <a asp-controller="Register" asp-action="Index" class="link">Sign up</a>
+                </span>
+            </h6>
+        </div>
+    </section>
+
+    <!-- Include any necessary scripts here -->
+    <!-- Display success message if it exists -->
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+    <!-- Display error message if it exists -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+</body>
+</html>

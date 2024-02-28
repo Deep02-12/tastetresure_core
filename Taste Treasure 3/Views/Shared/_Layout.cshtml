@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Taste_Treasure_3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/navbar.css" rel="stylesheet" />
+    <link href="~/css/footer.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Taste_Treasure_3.styles.css" asp-append-version="true" />
+</head>
+<body style="padding-top: 80px;">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light --bs-light-text-emphasis fixed-top">
+            <div class="containerNav container-fluid mt-3 px-5">
+                <div class="burger">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="navbarBack()">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <img src="~/images/logo.webp" class="margin" height="75px" />
+                        <ul class="navbar-nav me-auto mb-2 mt-2 mb-lg-0">
+                            <li class="nav-item me-5">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AddMenu" asp-action="Index">Add Menu</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SearchMenu" asp-action="Index">Search Menu</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user d-flex align-items-center">
+                    <div class="photo me-4" style="width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
+                        <img src="loggedin_user.png" alt="User Photo" width="40" height="40" onclick="handleProfileClick()" style="border-radius: 20%; cursor: pointer;" />
+                    </div>
+                    <div class="text">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p class="mb-0">@ViewData["Username"]</p>
+                            <p class="mb-0">
+                                <a href="logout" class="text-dark"><strong>Logout</strong></a>
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="mb-0">
+                                <a href="login" class="text-dark"><strong>Login</strong></a>
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer1 pt-5 w-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="wrapper d-flex justify-content-center align-items-center">
+            <div class="wrapper5">
+                <h1 class="text-center">Eat, Cook, Repeat</h1>
+                <h5 class="text-center">
+                    Share your best recipe by uploading here!
+                </h5>
+            </div>
+        </div>
+    </footer>
+    <footer class="footer2 w-100 d-flex flex-row justify-content-center align-items-center">
+        <div class="foot d-flex justify-content-center">
+            <ul class="d-flex list-unstyled">
+                <li>
+                    <a href="/home">Home</a>
+                </li>
+                <li>
+                    <a href="/addMenu">Add Menu</a>
+                </li>
+                <li>
+                    <a href="/search">Search Menu</a>
+                </li>
+                <li>
+                    <a href="/profile">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

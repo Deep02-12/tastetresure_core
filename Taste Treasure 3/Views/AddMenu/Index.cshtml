@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "AddMenu";
+}
+<html>
+<head>
+    <title>AddMenu</title>
+    <link href="~/css/addmenu.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="content" class="d-flex justify-content-center" style="height: 100vh;">
+        <div class="content-container w-50 h-50 d-flex flex-column">
+            <!-- Your HTML form for adding a new recipe -->
+            <form id="addRecipeForm" method="post" action="@Url.Action("AddRecipe", "AddMenu")" enctype="multipart/form-data">
+                <!-- Add form fields for Photo, Title, Ingredients, and CategoryId -->
+                <input type="file" name="photo" class="form-control" />
+                <input type="text" name="Title" class="form-control" placeholder="Title" />
+                <textarea name="Ingredients" class="form-control" placeholder="Ingredients"></textarea>
+                <select name="CategoryId" class="form-control">
+                    <option value="1">Appetizer</option>
+                    <option value="2">Main Course</option>
+                    <option value="3">Dessert</option>
+                </select>
+                <!-- Add a submit button with onclick event for confirmation -->
+                <button type="button" id="addRecipeButton" class="btn btn-primary">Add Recipe</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('addRecipeButton').addEventListener('click', function () {
+            if (confirm("Are you sure you want to add this recipe?")) {
+                // If user confirms, submit the form
+                document.getElementById('addRecipeForm').submit();
+            }
+        });
+    </script>
+</body>
+</html>

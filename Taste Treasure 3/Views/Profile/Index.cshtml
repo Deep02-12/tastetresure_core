@@ -1,0 +1,114 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/profile.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <NavBar />
+    <ToastContainer />
+
+    <!-- User profile section -->
+    <section class="container-content w-100">
+        <!-- Display user information -->
+        <!-- Left section for user information -->
+        <div class="row postHeader">
+            <!-- User info -->
+            <div class="col-md-9 d-flex align-items-center ms-5">
+                <div class="block mt-1 ms-3 me-3"></div>
+                <!-- User profile image -->
+                <img src="~/images/loggedin_user.png" alt="" class="mt-1 me-2" style="width: 40px; height: 40px; overflow: hidden; border-radius: 50%; />
+                <!-- User name and recipe count -->
+                <div class="comment-user p-1">
+                    <div class="nameAcc">
+                        <p class="mb-0">user.name</p>
+                    </div>
+                    <div class="logoutAcc">
+                        <p class="font-weight-bold mb-0">Recipes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right section for date -->
+            <div class="col-md-2 content pt-3 text-right">
+                <div class="comment-user">
+                    <!-- User created date -->
+                    <div class="date">
+                        <p class="mb-0 font-weight-bold">Date</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs section -->
+    <div class="tabs-wrapper container row ms-3 ps-5">
+        <!-- Tab navigation -->
+        <ul class="nav nav-tabs border-0" id="recipesTab" role="tablist">
+            <!-- Recipe tab -->
+            <li class="nav-item" id="nav-item">
+                <a class="titleTab nav-link active border-0" id="recipes-tab" data-bs-toggle="tab" href="#recipes" role="tab" aria-controls="recipes" aria-selected="true">Recipes</a>
+            </li>
+            <!-- Bookmarked tab -->
+            <li class="nav-item" id="nav-item">
+                <a class="titleTab nav-link border-0" id="bookmarked-tab" data-bs-toggle="tab" href="#bookmarked" role="tab" aria-controls="bookmarked" aria-selected="false">Bookmarked</a>
+            </li>
+            <!-- Liked tab -->
+            <li class="nav-item" id="nav-item">
+                <a class="titleTab nav-link border-0" id="liked-tab" data-bs-toggle="tab" href="#liked" role="tab" aria-controls="liked" aria-selected="false">Liked</a>
+            </li>
+        </ul>
+        <hr class="bar w-50" />
+
+        <!-- Tab content -->
+        <div class="tab-content" id="recipesTabContent">
+            <!-- Recipes tab content -->
+            <div class="container tab-pane fade show active" id="recipes" role="tabpanel" aria-labelledby="recipes-tab">
+                <!-- Display recipes -->
+                <div class="container-fluid row">
+                    <!-- Loop through itemsToShow -->
+                        <!-- Recipe item -->
+                        <div class="content-wrapper row" key="id">
+                            <!-- Recipe image -->
+                            <div class="content col-lg-4 col-md-5 col-sm-7 mb-5">
+                            <img src="~/images/item1.webp" alt="Food Image" width="300" height="300" style="border-radius: 10px; />
+                            </div>
+                            <!-- Recipe details -->
+                            <div class="content-title col-lg-8 col-md-7 col-sm-5">
+                                <h5>title</h5>
+                                <div>
+                                    <p class="mb-0">Ingredients:</p>
+                                    <p>ingredients</p>
+                                </div>
+                                <!-- Other recipe details -->
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Bookmarked tab content -->
+            <div class="tab-pane fade" id="bookmarked" role="tabpanel" aria-labelledby="bookmarked-tab">
+                <h3>Bookmarked Content</h3>
+                <!-- Render Bookmarked content here if needed -->
+            </div>
+
+            <!-- Liked tab content -->
+            <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="liked-tab">
+                <h3>Liked Content</h3>
+                <!-- Render Liked content here if needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿body {
+}
+/* ! footer start */
+.footer1 {
+    background-color: #efc81a;
+    height: 100%;
+}
+
+.footer2 a {
+    color: #020202; /* Set text color to white */
+    text-decoration: none;
+}
+
+.wrapper5 {
+    color: #2e266f;
+}
+
+.foot li {
+    /* font-size: 15px; */
+    color: #707070;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30%;
+    margin-bottom: 10px;
+}
+
+

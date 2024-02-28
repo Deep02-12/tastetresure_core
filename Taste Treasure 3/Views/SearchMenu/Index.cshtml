@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Menu</title>
+    <link rel="stylesheet" href="~/css/SearchMenu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="primary">
+        <nav class="navbar">
+            <!-- Navbar content -->
+        </nav>
+        <section class="discover">
+            <div class="slide1 mt-4 ms-5">
+                <section>
+                    <h1>
+                        Search & Explore Your Favorite <br /> Recipes
+                    </h1>
+                </section>
+                <div class="searchBar d-flex">
+                    <input type="text" class="search col-6 ps-5 border-0 font-weight-normal" placeholder="Enter Recipe or Ingredients">
+                    <button id="srcMenu" class="srcMenu btn ms-3 col-1 d-flex align-items-center justify-content-center">
+                        Search
+                    </button>
+                </div>
+                <div class="filter d-flex mt-3">
+                    <button id="srcNew" class="srcNew btn col-1 d-flex align-items-center justify-content-center">
+                        New
+                    </button>
+                    <button id="srcNew" class="srcNew btn col-1 d-flex align-items-center justify-content-center">
+                        Popular
+                    </button>
+                    <button id="srcVegetarian" class="srcNew btn col-1 d-flex align-items-center justify-content-center">
+                        Vegetarian
+                    </button>
+                    <button id="srcBreakfast" class="srcNew btn col-1 d-flex align-items-center justify-content-center">
+                        Breakfast
+                    </button>
+                    <!-- Other filter buttons -->
+                </div>
+            </div>
+        </section>
+        <!-- Content wrapper -->
+        <div class="content-wrapper container-fluid d-flex mb-0">
+            <div class="container menu-content-pic d-flex flex-column mt-5 ms-5">
+                <!-- Recipe cards -->
+                <!-- Example card -->
+                <div class="content-wrapper row mb-5">
+                    <div class="content col-lg-4 col-md-5 col-sm-7 mb-5">
+                        <img id="food-image" src="~/images/item1.webp" alt="Food Image" style="cursor: pointer; border-radius: 8px;">
+                    </div>
+                    <div class="content-title col-lg-8 col-md-7 col-sm-5">
+                        <h5>Recipe Title</h5>
+                        <div>
+                            <p class="mb-0">Ingredients:</p>
+                            <h5>Chocholate</h5>
+                            <h5>Milk</h5>
+                            <h5>Kitkat</h5>
+                            <h5>Oreo</h5>
+                        </div>
+                        <div class="filter d-flex mt-3">
+                            <button id="srcLikes" class="srcLikes btn col-1 d-flex align-items-center justify-content-center">
+                                10 likes - 12 Comments - 3 bookmarks
+                            </button>
+                        </div>
+                        <!-- Other content -->
+                    </div>
+                </div>
+                <div class="content-wrapper row mb-5">
+                    <div class="content col-lg-4 col-md-5 col-sm-7 mb-5">
+                        <img id="food-image" src="~/images/burger1.jpg" alt="Food Image" style="cursor: pointer; border-radius: 8px;" />
+                    </div>
+                    <div class="content-title col-lg-8 col-md-7 col-sm-5">
+                        <h5>Burger</h5>
+                        <div>
+                            <p class="mb-0">Ingredients:</p>
+                            <h5>Cheese</h5>
+                            <h5>Onion</h5>
+                            <h5>Tomato</h5>
+                            <h5>Bun</h5>
+                        </div>
+                        <div class="filter d-flex mt-3">
+                            <button id="srcLikes" class="srcLikes btn col-1 d-flex align-items-center justify-content-center">
+                                10 likes - 12 Comments - 3 bookmarks
+                            </button>
+                        </div>
+                        <!-- Other content -->
+                    </div>
+                </div>
+                <!-- End of example card -->
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="container-fluid pagination justify-content-center row mb-5">
+            <button id="btn-prev" class="btn btn-warning btn-prev col-lg-1" disabled>
+                Previous
+            </button>
+            <span class="col-lg-2  text-center">Page 1 of 1</span>
+            <button id="btn-next" class="btn btn-warning btn-next col-lg-1">
+                Next
+            </button>
+        </div>
+        <footer class="footer">
+            <!-- Footer content -->
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src="~/js/SearchMenu.js"></script> <!-- Include your JavaScript file -->
+</body>
+</html>

@@ -1,0 +1,133 @@
+﻿body {
+}
+* {
+    font-family: "Poppins";
+}
+
+.container {
+    max-width: 100%;
+}
+
+.accentBlock {
+    background-color: #efc81a;
+    position: absolute;
+    z-index: -9999;
+    width: 2%;
+    height: 50rem;
+    top: 40rem;
+    right: 0px;
+}
+
+/* ! Discover start */
+.discover h1 {
+    color: #2e266f;
+    font-size: 72px;
+    font-size: 50px;
+    line-height: 80px;
+    margin-top: 8rem;
+}
+
+.search {
+    height: 58px;
+    background: #efefef;
+    border-radius: 13px;
+    /* border-style: none; */
+
+    font-family: "Poppins";
+    /* font-weight: 500; */
+    font-size: 15px;
+    opacity: 0.6;
+    background-image: url("../assets/cari.png");
+    background-repeat: no-repeat;
+    background-position: 20px;
+    background-size: 15px 15px;
+}
+
+#srcMenu {
+    background-color: #efc81a;
+    font-size: 20px;
+    height: 58px;
+    border-radius: 13px;
+    color: #fff;
+}
+
+.filter #srcNew {
+    margin-right:10px;
+    background: #efc81a;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.filter #srcPopular {
+    margin-right: 10px;
+    background: #efc81a;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#srcVegetarian {
+    margin-right: 10px;
+    background: #00e092;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#srcBreakfast {
+    margin-right: 10px;
+    background: #00e092;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.filter #srcLikes {
+    margin-right: 10px;
+    background: #efc81a;
+    font-size: 15px;
+    height: 30px;
+    width : 350px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.filter {
+    font-size: 10px;
+}
+
+#food-image {
+    width: 300px;
+}
+
+.round-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+    .round-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+/* ! Discover end */
+/* ! Page start */
+#btn-prev {
+    width: 100px;
+    height: 50px;
+}
+
+#btn-next {
+    width: 100px;
+    height: 50px;
+}
+/* ! Page end */

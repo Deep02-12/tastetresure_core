@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.IO;
 using System.Data.SqlClient;
 using Taste_Treasure_3.Models;
 
@@ -11,89 +8,53 @@ namespace Taste_Treasure_3.Controllers
     {
         private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Taste Treasure;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        // This method will render the AddMenu view
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var recipe = new Recipe();
+            return View(recipe);
         }
 
-        // This method will handle the form submission to add a new recipe
-        // This method will handle the form submission to add a new recipe
         [HttpPost]
-        public IActionResult AddRecipe(Recipe recipe, IFormFile photo)
+        public IActionResult Index(Recipe recipe)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // Check ModelState Errors
-                if (!ModelState.IsValid)
+                try
                 {
-                    // Log ModelState errors
-                    foreach (var modelStateKey in ModelState.Keys)
+                    using (var connection = new SqlConnection(connectionString))
                     {
-                        foreach (var error in ModelState[modelStateKey].Errors)
+                        connection.Open();
+
+                        // Define the SQL query
+                        string query = "INSERT INTO Recipe (Title, Ingredients, CategoryId) VALUES (@Title, @Ingredients, @CategoryId)";
+
+                        // Create a command object
+                        using (var command = new SqlCommand(query, connection))
                         {
-                            Console.WriteLine($"{modelStateKey}: {error.ErrorMessage}");
+                            // Add parameters to the command
+                            command.Parameters.AddWithValue("@Title", recipe.Title);
+                            command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
+                            command.Parameters.AddWithValue("@CategoryId", recipe.CategoryId);
+
+                            // Execute the command
+                            command.ExecuteNonQuery();
                         }
                     }
 
-                    TempData["ErrorMessage"] = "Model state is not valid.";
-                    return RedirectToAction("Index");
+                    // Redirect to the home page after successfully adding the recipe
+                    return RedirectToAction("Index", "Home");
                 }
-
-                // Check if photo is provided and process it
-                if (photo != null && photo.Length > 0)
+                catch (Exception ex)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        photo.CopyTo(memoryStream);
-                        recipe.Photo = memoryStream.ToArray();
-                    }
-                }
-
-                // Log recipe details before attempting to add to the database
-                LogRecipeDetails(recipe);
-
-                // Assume we have a method to save the recipe to the database
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    // Here you should write your SQL query to insert the recipe into the database
-                    string query = "INSERT INTO Recipe (Photo, Title, Ingredients, CategoryId) VALUES (@Photo, @Title, @Ingredients, @CategoryId)";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Photo", recipe.Photo);
-                    command.Parameters.AddWithValue("@Title", recipe.Title);
-                    command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
-                    command.Parameters.AddWithValue("@CategoryId", recipe.CategoryId);
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        // Notify the user that the recipe was added successfully
-                        TempData["SuccessMessage"] = "Recipe added successfully!";
-                    }
-                    else
-                    {
-                        TempData["ErrorMessage"] = "Recipe could not be added. No rows affected.";
-                    }
+                    // Handle exceptions
+                    ModelState.AddModelError(string.Empty, "An error occurred while adding the recipe.");
+                    return View(recipe);
                 }
             }
-            catch (Exception ex)
-            {
-                // Log or handle the exception accordingly
-                TempData["ErrorMessage"] = $"An error occurred while adding the recipe: {ex.Message}";
-            }
 
-            return RedirectToAction("Index");
+            // If the model state is not valid, return to the form with validation errors
+            return View(recipe);
         }
-
-        // Helper method to log recipe details
-        private void LogRecipeDetails(Recipe recipe)
-        {
-            // Log recipe details
-            string logMessage = $"Recipe Details - Title: {recipe.Title}, Ingredients: {recipe.Ingredients}, CategoryId: {recipe.CategoryId}";
-            // Replace this with your preferred logging mechanism, such as logging to a file or database
-            Console.WriteLine(logMessage);
-        }
-
     }
 }

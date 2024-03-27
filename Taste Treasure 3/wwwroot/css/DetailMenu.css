@@ -1,0 +1,90 @@
+﻿body {
+}
+:root {
+    --main-color: #2e266f;
+    --accent-color: #efc81a;
+    --background-light: #f8f9fa;
+}
+
+* {
+    font-family: "Poppins";
+}
+
+.content {
+    margin-top: 2rem;
+}
+
+.postHeader {
+    margin-top: 8rem;
+}
+
+    /* Content start */
+    .postHeader img {
+        width: 40px;
+        height: 2rem; /* Use rem for consistency */
+    }
+
+.content-container h1 {
+    color: var(--main-color);
+}
+
+.addFile input,
+.addIngredients textarea,
+.comment-section textarea {
+    background-color: var(--background-light);
+    border-style: none;
+    outline: none;
+}
+
+.booklike .book {
+    background-color: var(--accent-color);
+    height: 34px;
+    width: 34px;
+}
+
+.book img,
+.like img {
+    margin-right: 50%; /* Adjust margin for spacing */
+    height: 24px;
+    width: 24px;
+}
+
+.booklike .like {
+    background-color: #fff;
+    height: 34px;
+    width: 34px;
+    border: 1px solid var(--accent-color);
+}
+
+.bar {
+    width: 95%;
+    height: 2px;
+    border: none;
+    background: var(--accent-color);
+}
+
+.comment-section button {
+    background-color: var(--accent-color);
+    border-style: none;
+    outline: none;
+}
+
+/* Comment content start */
+.comment-content img {
+    height: 45px;
+    width: 45px;
+}
+/* Comment content end */
+
+/* Content end */
+
+/* Responsive Design */
+@media screen and (max-width: 1920px) {
+    /* Add responsive styles here */
+}
+
+.thumbnail-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* This property ensures the image is scaled to cover the entire box without stretching */
+}

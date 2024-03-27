@@ -6,5 +6,6 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
+        public byte[] RecipeImage { get; set; } // Property to hold the image data of the recipe
     }
 }

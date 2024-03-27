@@ -34,9 +34,10 @@
                     </div>
                 </div>
                 <div class="user d-flex align-items-center">
-                    <div class="photo me-4" style="width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
-                        <img src="loggedin_user.png" alt="User Photo" width="40" height="40" onclick="handleProfileClick()" style="border-radius: 20%; cursor: pointer;" />
+                    <div class="photo me-4" style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">
+                        <img src="~/images/loggedin_user.png" alt="User Photo" width="50" height="50" onclick="handleProfileClick()" style="border-radius: 50%; cursor: pointer;" />
                     </div>
+
                     <div class="text">
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -76,16 +77,13 @@
         <div class="foot d-flex justify-content-center">
             <ul class="d-flex list-unstyled">
                 <li>
-                    <a href="/home">Home</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li>
-                    <a href="/addMenu">Add Menu</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AddMenu" asp-action="Index">Add Menu</a>
                 </li>
                 <li>
-                    <a href="/search">Search Menu</a>
-                </li>
-                <li>
-                    <a href="/profile">Profile</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="SearchMenu" asp-action="Index">Search Menu</a>
                 </li>
             </ul>
         </div>

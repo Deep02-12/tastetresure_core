@@ -60,7 +60,7 @@
                                 <br />
                                 Elevate Your Lunch in Minutes!“
                             </h5>
-                            <button class="learnMore mt-2 border-0 rounded-2">
+                            <button class="learnMore mt-2 border-0 rounded-2" onclick="window.open('https://youtu.be/k9vJldlkxzA?feature=shared', '_blank');">
                                 Learn More
                             </button>
                         </div>
@@ -69,70 +69,46 @@
             </div>
         </section>
 
-        <section id="new-recipe">
+        <section id="popular">
             <div class="container">
-                <div class="content3 row mb-5">
-                    <div class="pageTitle col d-flex align-items-center ms-0">
+                <div class="row">
+                    <div class="pageTitle col d-flex align-items-center mb-5 ms-0">
                         <div class="block"></div>
-                        <h2 class="text-lg-start">New Recipe</h2>
+                        <h2 class="text-start">Most Searched</h2>
                     </div>
                 </div>
                 <div class="row">
-
-                    <!-- New recipe section content here -->
+                    <!-- Most Searched content here -->
                     <div class="slide1">
                         <!-- Dot content -->
                     </div>
                     <div class="image2 col-md-5">
-                        <img src="~/images/recipe pic 3.png" alt="New Recipe" width="500" />
+                        <img src="~/images/veg-biryani.jpg" alt="Most Searched" width="500" style="border-radius: 25px;" />
                     </div>
                     <div class="slide2 col-md-6 d-flex align-items-center ms-5">
-                        <div class="wrapper">
-                            <h2>
-                                Fresh &amp; Crunchy
-                                <br />
-                                Salad Bliss (Healthy &amp; Easy)
-                            </h2>
-                            <hr />
-                            <h5 style="font-family: Arial, sans-serif;">
-                                Wholesome Salad Plate to
-                                <br />
-                                Brighten Your Mealtime!
-                            </h5>
-                            <button class="learnMore mt-2 border-0 rounded-2">
-                                Learn More
-                            </button>
-                        </div>
-                    </div>
-                    @* <div class="slide1 col-5">
-                        <!-- Left side content -->
-                    </div>
-                    <div class="slide2 col-6 d-flex align-items-center ms-5">
-                        <div class="image2 col-md-5">
-                            <img src="~/images/recipe pic 3.png" alt="New Recipe" />
-                        </div>
-                        <div class="wrapper">
-                            <h2>
-                                Fresh &amp; Crunchy
-                                <br />
-                                Salad Bliss (Healthy &amp; Easy)
-                            </h2>
-                            <hr />
-                            <h5 style="font-family: Arial, sans-serif;">
-                                <q style="font-family: Arial, sans-serif;">
-                                    Wholesome Salad Plate to
+                        <div class="slide2 col-md-6 d-flex align-items-center ms-5">
+                            <div class="wrapper">
+                                <h2>
+                                    Fresh &amp; Crunchy
+                                    <br />
+                                    Veg - Biryani (Healthy &amp; Easy)
+                                </h2>
+                                <hr />
+                                <h5 style="font-family: Arial, sans-serif;">
+                                    Wholesome Biryani Plate to
                                     <br />
                                     Brighten Your Mealtime!
-                                </q>
-                            </h5>
-                            <button class="learnMore mt-2 border-0 rounded-2">
-                                Learn More
-                            </button>
+                                </h5>
+                                <button class="learnMore mt-2 border-0 rounded-2" onclick="window.open('https://www.youtube.com/watch?v=SZByh7nXp1U&pp=ygULdmVnIGJpcnlhbmk%3D', '_blank');">
+                                    Learn More
+                                </button>
+                            </div>
                         </div>
-                    </div> *@
+                    </div>
                 </div>
             </div>
         </section>
+
 
         <section id="top">
             <div class="container">
@@ -147,28 +123,37 @@
                 <div class="content-top row">
                     <!-- Top section content here -->
                     <div class="col-3 mt-5 d-flex justify-content-center">
-                        <div class="recipe1 rounded-3">
-                            <img src="~/images/recipe pic 4.png" alt="Salad" width="200" />
-                            <div class="salad"> Salads </div>
-                        </div>
+                        <a href="/DetailMenu/Index" class="recipe-link">
+                            <div class="recipe1 rounded-3">
+                                <img src="~/images/recipe pic 4.png" alt="Salad" width="200" />
+                                <div class="salad">Salads</div>
+                            </div>
+                        </a>
                     </div>
+
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe2 rounded-3">
                             <img src="~/images/recipe pic 5.png" alt="Appetizer" width="200" />
                             <div class="appetizer"> Appetizer </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe3 rounded-3">
                             <img src="~/images/recipe pic 6.png" alt="Main Course" width="200" />
                             <div class="maincourse"> Main Course </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe4 rounded-3">
                             <img src="~/images/recipe pic 7.png" alt="Dessert" width="200" />
                             <div class="dessert"> Dessert </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -185,28 +170,36 @@
                 <div class="content-top row">
                     <!-- Second Top section content here -->
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe1 rounded-3">
                             <img src="~/images/recipe pic 8.png" alt="Salad" width="200" />
                             <div class="gujarati"> Gujarati </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe2 rounded-3">
                             <img src="~/images/recipe pic 9.png" alt="Appetizer" width="200" />
                             <div class="punjabi"> Punjabi </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe3 rounded-3">
                             <img src="~/images/recipe pic 10.png" alt="Main Course" width="200" />
                             <div class="southindian"> South Indian </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-3 mt-5 d-flex justify-content-center">
+                        <a href="/DetailMenu/Index" class="recipe-link">
                         <div class="recipe4 rounded-3">
                             <img src="~/images/recipe pic 11.png" alt="Dessert" width="200" />
                             <div class="chinese"> Chinese </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Data.SqlClient;
+using System.IO;
 using Taste_Treasure_3.Models;
 
 namespace Taste_Treasure_3.Controllers
@@ -16,7 +19,7 @@ namespace Taste_Treasure_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Recipe recipe)
+        public IActionResult Index(Recipe recipe, IFormFile photo)
         {
             if (ModelState.IsValid)
             {
@@ -26,13 +29,24 @@ namespace Taste_Treasure_3.Controllers
                     {
                         connection.Open();
 
+                        // Convert image to byte array
+                        byte[] imageData = null;
+                        if (photo != null)
+                        {
+                            using (var binaryReader = new BinaryReader(photo.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)photo.Length);
+                            }
+                        }
+
                         // Define the SQL query
-                        string query = "INSERT INTO Recipe (Title, Ingredients, CategoryId) VALUES (@Title, @Ingredients, @CategoryId)";
+                        string query = "INSERT INTO Recipe (Photo, Title, Ingredients, CategoryId) VALUES (@Photo, @Title, @Ingredients, @CategoryId)";
 
                         // Create a command object
                         using (var command = new SqlCommand(query, connection))
                         {
                             // Add parameters to the command
+                            command.Parameters.AddWithValue("@Photo", imageData);
                             command.Parameters.AddWithValue("@Title", recipe.Title);
                             command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
                             command.Parameters.AddWithValue("@CategoryId", recipe.CategoryId);

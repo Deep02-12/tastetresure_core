@@ -1,21 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
-using System.Data.SqlClient;
-using System.IO;
+
+using System.Collections.Generic;
 using Taste_Treasure_3.Models;
 
 namespace Taste_Treasure_3.Controllers
 {
     public class AddMenuController : Controller
     {
-        private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Taste Treasure;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly IMongoCollection<Recipe> _recipeCollection;
+
+        public AddMenuController()
+        {
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("tastetreasure");
+            _recipeCollection = database.GetCollection<Recipe>("Recipe");
+        }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var recipe = new Recipe();
-            return View(recipe);
+            return View(new Recipe());
         }
 
         [HttpPost]
@@ -25,34 +33,34 @@ namespace Taste_Treasure_3.Controllers
             {
                 try
                 {
-                    using (var connection = new SqlConnection(connectionString))
+                    // Convert image to byte array
+                    byte[] imageData = null;
+                    if (photo != null)
                     {
-                        connection.Open();
-
-                        // Convert image to byte array
-                        byte[] imageData = null;
-                        if (photo != null)
+                        using (var stream = photo.OpenReadStream())
+                        using (var memoryStream = new MemoryStream())
                         {
-                            using (var binaryReader = new BinaryReader(photo.OpenReadStream()))
-                            {
-                                imageData = binaryReader.ReadBytes((int)photo.Length);
-                            }
-                        }
-
-                        string query = "INSERT INTO Recipe (Photo, Title, Ingredients, CategoryId) VALUES (@Photo, @Title, @Ingredients, @CategoryId)";
-
-                        using (var command = new SqlCommand(query, connection))
-                        {
-                            // Add parameters to the command
-                            command.Parameters.AddWithValue("@Photo", imageData);
-                            command.Parameters.AddWithValue("@Title", recipe.Title);
-                            command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
-                            command.Parameters.AddWithValue("@CategoryId", recipe.CategoryId);
-
-                            command.ExecuteNonQuery();
+                            stream.CopyTo(memoryStream);
+                            imageData = memoryStream.ToArray();
                         }
                     }
 
+                    // Create Recipe object
+                    var recipeObject = new Recipe
+                    {
+                        // Explicitly specify _id field
+                        Id = ObjectId.GenerateNewId().ToString(), // Assuming you're using ObjectId for _id field
+                        Photo = imageData,
+                        Title = recipe.Title,
+                        Ingredients = recipe.Ingredients,
+                        CategoryId = recipe.CategoryId
+                    };
+
+
+                    // Insert into MongoDB
+                    _recipeCollection.InsertOne(recipeObject);
+
+                    // Redirect to the home page after successfully adding the recipe
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
@@ -66,5 +74,6 @@ namespace Taste_Treasure_3.Controllers
             // If the model state is not valid, return to the form with validation errors
             return View(recipe);
         }
+
     }
 }

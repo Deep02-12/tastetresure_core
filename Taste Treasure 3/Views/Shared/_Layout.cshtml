@@ -38,7 +38,7 @@
                         <img src="~/images/loggedin_user.png" alt="User Photo" width="50" height="50" onclick="handleProfileClick()" style="border-radius: 50%; cursor: pointer;" />
                     </div>
 
-                    <div class="text">
+                <div class="user d-flex align-items-center">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <p class="mb-0">@ViewData["Username"]</p>

@@ -9,13 +9,11 @@ namespace Taste_Treasure_3.Controllers
 
         public LoginController()
         {
-            // Initialize the connection string
             _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Taste Treasure;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
         public IActionResult Index()
         {
-            // Check if there is a success message in TempData, if so, pass it to the view
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             return View();
         }
@@ -37,7 +35,6 @@ namespace Taste_Treasure_3.Controllers
 
                     if (count > 0)
                     {
-                        // Authentication successful, set success message and redirect to home controller's index action
                         TempData["SuccessMessage"] = "Login successful!";
                         return RedirectToAction("Index", "Home");
                     }

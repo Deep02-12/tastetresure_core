@@ -1,37 +1,17 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    const searchButton = document.getElementById("srcMenu");
+﻿document.getElementById('srcMenu').addEventListener('click', function () {
+    var searchQuery = document.querySelector('.search').value.trim().toLowerCase();
 
-    searchButton.addEventListener("click", function () {
-        const searchInput = document.querySelector(".search");
-        const searchTerm = searchInput.value.toLowerCase().trim();
+    var recipeTitles = document.querySelectorAll('.content-title h5:first-child');
 
-        if (searchTerm === "") {
-            return; // Do nothing if search term is empty
+    recipeTitles.forEach(function (title) {
+        var recipeName = title.textContent.trim().toLowerCase();
+        var parentContainer = title.closest('.content-wrapper');
+
+        // Check if the recipe name includes the search query
+        if (recipeName.includes(searchQuery)) {
+            parentContainer.style.display = 'block'; 
+        } else {
+            parentContainer.style.display = 'none'; 
         }
-
-        const recipeTitles = document.querySelectorAll(".content-title h5:first-child");
-
-        // Array to store matching recipe cards
-        const matchingRecipes = [];
-
-        // Loop through each recipe title
-        recipeTitles.forEach(function (title) {
-            const recipeTitle = title.textContent.toLowerCase();
-            const parentContentWrapper = title.closest(".content-wrapper");
-
-            if (recipeTitle.includes(searchTerm)) {
-                matchingRecipes.push(parentContentWrapper);
-                parentContentWrapper.remove(); // Remove matched card from its current position
-            }
-        });
-
-        // Add matched recipe cards to the top of the list
-        const menuContent = document.querySelector(".menu-content-pic");
-        matchingRecipes.forEach(function (recipe) {
-            menuContent.prepend(recipe);
-        });
-
-        // Scroll to the top of the page
-        window.scrollTo({ top: 0, behavior: "smooth" });
     });
 });

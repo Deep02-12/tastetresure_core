@@ -17,8 +17,7 @@ namespace Taste_Treasure_3.Controllers
 
         public IActionResult Index()
         {
-            // Assuming you have access to the user's email in your controller
-            string userEmail = ""; // Replace this with the user's email
+            string userEmail = ""; 
             ViewData["UserEmail"] = userEmail;
             return View();
         }

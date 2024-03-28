@@ -39,10 +39,8 @@ namespace Taste_Treasure_3.Controllers
                             }
                         }
 
-                        // Define the SQL query
                         string query = "INSERT INTO Recipe (Photo, Title, Ingredients, CategoryId) VALUES (@Photo, @Title, @Ingredients, @CategoryId)";
 
-                        // Create a command object
                         using (var command = new SqlCommand(query, connection))
                         {
                             // Add parameters to the command
@@ -51,12 +49,10 @@ namespace Taste_Treasure_3.Controllers
                             command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
                             command.Parameters.AddWithValue("@CategoryId", recipe.CategoryId);
 
-                            // Execute the command
                             command.ExecuteNonQuery();
                         }
                     }
 
-                    // Redirect to the home page after successfully adding the recipe
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)

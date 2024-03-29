@@ -38,10 +38,17 @@
                         <img src="~/images/loggedin_user.png" alt="User Photo" width="50" height="50" onclick="handleProfileClick()" style="border-radius: 50%; cursor: pointer;" />
                     </div>
 
-                <div class="user d-flex align-items-center">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="text">
+                            <p asp-action="Index" asp-controller="Login" class="mb-0">Welcome Guest</p>
+                        </div>
+                    }
+
+                    <div class="text">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <p class="mb-0">@ViewData["Username"]</p>
+                            <p class="mb-0">Welcome @ViewData["Username"]</p>
                             <p class="mb-0">
                                 <a href="logout" class="text-dark"><strong>Logout</strong></a>
                             </p>
@@ -54,6 +61,7 @@
                         }
                     </div>
                 </div>
+
             </div>
         </nav>
     </header>

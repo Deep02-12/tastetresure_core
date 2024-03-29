@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-
 using System.Collections.Generic;
 using Taste_Treasure_3.Models;
 
@@ -48,19 +47,17 @@ namespace Taste_Treasure_3.Controllers
                     // Create Recipe object
                     var recipeObject = new Recipe
                     {
-                        // Explicitly specify _id field
-                        Id = ObjectId.GenerateNewId().ToString(), // Assuming you're using ObjectId for _id field
+                        Id = ObjectId.GenerateNewId().ToString(), 
                         Photo = imageData,
                         Title = recipe.Title,
                         Ingredients = recipe.Ingredients,
                         CategoryId = recipe.CategoryId
                     };
 
-
                     // Insert into MongoDB
                     _recipeCollection.InsertOne(recipeObject);
 
-                    // Redirect to the home page after successfully adding the recipe
+                   
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)

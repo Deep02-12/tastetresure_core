@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
+using MongoDB.Driver;
+using Taste_Treasure_3.Models;
 
 namespace Taste_Treasure_3.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly string _connectionString;
+        private readonly IMongoCollection<User> _userCollection;
 
         public LoginController()
         {
-            _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Taste Treasure;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("tastetreasure");
+            _userCollection = database.GetCollection<User>("User");
         }
 
         public IActionResult Index()
@@ -21,29 +24,16 @@ namespace Taste_Treasure_3.Controllers
         [HttpPost]
         public IActionResult Index(string email, string password)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            var user = _userCollection.Find(u => u.Email == email && u.Password == password).FirstOrDefault();
+            if (user != null)
             {
-                connection.Open();
-
-                string query = "SELECT COUNT(*) FROM [User] WHERE Email = @Email AND Password = @Password";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    int count = (int)command.ExecuteScalar();
-
-                    if (count > 0)
-                    {
-                        TempData["SuccessMessage"] = "Login successful!";
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        TempData["ErrorMessage"] = "Incorrect email or password.";
-                        return RedirectToAction("Index");
-                    }
-                }
+                TempData["SuccessMessage"] = "Login successful!";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Incorrect email or password.";
+                return RedirectToAction("Index");
             }
         }
     }

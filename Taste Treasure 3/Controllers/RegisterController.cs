@@ -1,12 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
+using MongoDB.Driver;
 using Taste_Treasure_3.Models;
 
 namespace Taste_Treasure_3.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Taste Treasure;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly IMongoCollection<User> _userCollection;
+
+        public RegisterController()
+        {
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("tastetreasure");
+            _userCollection = database.GetCollection<User>("User");
+        }
 
         public IActionResult Index()
         {
@@ -14,20 +21,9 @@ namespace Taste_Treasure_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Register register)
+        public IActionResult Index(User user)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO [User] (Email, Password, Name) VALUES (@Email, @Password, @Name)";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Email", register.Email);
-                command.Parameters.AddWithValue("@Password", register.Password);
-                command.Parameters.AddWithValue("@Name", register.Name);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-
+            _userCollection.InsertOne(user);
             return RedirectToAction("Index", "Login");
         }
     }
